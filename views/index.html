@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CertiNova</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+<div class="background">
+
+<div class="blur blur1"></div>
+<div class="blur blur2"></div>
+<div class="blur blur3"></div>
+
+</div>
+
+<nav>
+
+<div class="logo">
+CertiNova
+</div>
+
+<ul>
+<li><a href="#">Inicio</a></li>
+<li><a href="#">Servicios</a></li>
+<li><a href="#">Pagos</a></li>
+<li><a href="#">Documentos</a></li>
+<li><a href="#">Contacto</a></li>
+</ul>
+
+<button class="btn-nav">
+Iniciar Sesión
+</button>
+
+</nav>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<div class="badge">
+🚀 Plataforma Digital Profesional
+</div>
+
+<h1>
+Gestiona tus <span>certificados</span> y pagos online fácilmente
+</h1>
+
+<p>
+Plataforma moderna y segura para solicitudes digitales, pagos automáticos y generación de certificados PDF profesionales.
+</p>
+
+<div class="hero-buttons">
+
+<button class="btn-primary" id="btn-pagar">
+Pagar Certificado 🚀
+</button>
+
+<button class="btn-secondary">
+Ver Servicios
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="stats">
+
+<div class="stat-card">
+<h2>+12K</h2>
+<p>Usuarios registrados</p>
+</div>
+
+<div class="stat-card">
+<h2>+45K</h2>
+<p>Certificados generados</p>
+</div>
+
+<div class="stat-card">
+<h2>99.9%</h2>
+<p>Seguridad garantizada</p>
+</div>
+
+<div class="stat-card">
+<h2>24/7</h2>
+<p>Soporte disponible</p>
+</div>
+
+</section>
+
+<section class="services">
+
+<div class="services-title">
+
+<h2>
+Servicios Premium
+</h2>
+
+<p>
+Soluciones digitales modernas para certificados y validaciones online.
+</p>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+<h3>
+Pagos Online
+</h3>
+
+<p>
+Integra pagos automáticos con tarjetas, PSE, Nequi y transferencias bancarias.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+PDF Automáticos
+</h3>
+
+<p>
+Generación instantánea de certificados digitales profesionales y seguros.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+Seguridad Avanzada
+</h3>
+
+<p>
+Protección de datos y usuarios mediante tecnologías modernas y cifrado seguro.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FORMULARIO -->
+
+<section class="form-section">
+
+<div class="form-container">
+
+<h2>
+Solicitar Certificado
+</h2>
+
+<p>
+Completa el formulario para iniciar tu solicitud digital.
+</p>
+
+<form action="/solicitud" method="POST">
+
+<input type="text" name="nombre" placeholder="Nombre completo" required>
+
+<input type="email" name="correo" placeholder="Correo electrónico" required>
+
+<input type="text" name="documento" placeholder="Número de documento" required>
+
+<select name="certificado" required>
+
+<option value="">
+Selecciona un certificado
+</option>
+
+<option>
+Certificado Laboral
+</option>
+
+<option>
+Certificado Académico
+</option>
+
+<option>
+Constancia Digital
+</option>
+
+</select>
+
+<button type="submit">
+Enviar Solicitud
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+<footer>
+
+© 2026 CertiNova - Plataforma profesional de certificados digitales
+
+</footer>
+
+<!-- WOMPI -->
+
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const botonPago = document.getElementById('btn-pagar');
+
+    botonPago.addEventListener('click', () => {
+
+        botonPago.innerHTML = 'Redirigiendo al pago...';
+
+        botonPago.disabled = true;
+
+        const referencia = 'CERTI-' + Date.now();
+
+        window.location.href =
+        `https://checkout.wompi.co/p/?public-key=pub_test_Etq2Qu8CfeHh8CM0giSfjCPNj9sNguWZ&currency=COP&amount-in-cents=5000000&reference=${referencia}`;
+
+    });
+
+});
+
+</script>
