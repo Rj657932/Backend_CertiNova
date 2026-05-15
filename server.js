@@ -1,23 +1,27 @@
 const express = require('express');
-
 const path = require('path');
-
+const db = require('./database/database')
 const app = express();
 
 /* ARCHIVOS PUBLICOS */
-
 app.use(express.static('public'));
 
 /* LEER FORMULARIOS */
-
 app.use(express.urlencoded({ extended: true }));
-
 /* PAGINA PRINCIPAL */
 
 app.get('/', (req, res) => {
-
     res.sendFile(path.join(__dirname, 'views', 'index.html'));
+});
 
+/* TABLA */
+db.query('SELECT * FROM solicitudes', (err, results) => {
+    if(err) {
+        console.error(err);
+        return;
+    }
+
+    console.info(results);
 });
 
 /* FORMULARIO */
@@ -25,11 +29,8 @@ app.get('/', (req, res) => {
 app.post('/solicitud', (req, res) => {
 
     const nombre = req.body.nombre;
-
     const correo = req.body.correo;
-
     const documento = req.body.documento;
-
     const certificado = req.body.certificado;
 
     console.log('===== NUEVA SOLICITUD =====');
@@ -45,9 +46,7 @@ app.post('/solicitud', (req, res) => {
     console.log('===========================');
 
     res.send(`
-
         <html>
-
         <head>
 
             <title>Solicitud enviada</title>
@@ -99,15 +98,10 @@ app.post('/solicitud', (req, res) => {
         </body>
 
         </html>
-
     `);
-
 });
 
 /* SERVIDOR */
-
 app.listen(3000, () => {
-
     console.log('Servidor corriendo en http://localhost:3000');
-
 });

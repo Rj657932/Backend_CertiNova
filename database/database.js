@@ -1,30 +1,21 @@
-const sqlite3 = require('sqlite3').verbose();
+//const sqlite3 = require('sqlite3').verbose();
+const mysql = require('mysql2');
+require('dotenv').config()
 
-const db = new sqlite3.Database('./database/certinova.db', (err) => {
-
-    if(err){
-        console.log(err.message);
-    } else {
-        console.log('Base de datos conectada 🚀');
-    }
-
+const connection = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE
 });
 
-/* TABLA */
+connection.connect((err) => {
+    if(err) {
+        console.info('Error database: ', err.message);
+        return
+    }
 
-db.run(`
+    console.info('Base de datos conectada 🚀');
+});
 
-CREATE TABLE IF NOT EXISTS solicitudes (
-
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-
-    nombre TEXT,
-    correo TEXT,
-    documento TEXT,
-    certificado TEXT
-
-)
-
-`);
-
-module.exports = db;
+module.exports = connection;
