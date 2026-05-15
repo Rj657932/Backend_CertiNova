@@ -12,7 +12,11 @@ app.use(express.urlencoded({ extended: true }));
 /* PAGINA PRINCIPAL */
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'index.html'));
+    res.sendFile(path.join(__dirname, 'src', 'views', 'index.html'));
+});
+
+app.get('/admin', (req, res) => {
+    res.sendFile(path.join(__dirname, 'src', 'views', 'admin.html'));
 });
 
 app.get('/AllUsers', (req, res) => {
