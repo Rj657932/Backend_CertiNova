@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const db = require('./src/database/database');
+const { error } = require('console');
 const app = express();
 
 /* ARCHIVOS PUBLICOS */
@@ -14,14 +15,19 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 
-/* TABLA */
-db.query('SELECT * FROM solicitudes', (err, results) => {
-    if(err) {
-        console.error(err);
-        return;
-    }
+app.get('/AllUsers', (req, res) => {
+    /* TABLA */
+    db.query('SELECT * FROM solicitudes', (err, results) => {
+        if(err) {
+            console.error(err);
+            
+            return res.statusCode(500).json({
+                error: 'Error en la consulta'
+            });
+        }
 
-    console.info(results);
+        res.json(results);
+    });
 });
 
 /* FORMULARIO */
